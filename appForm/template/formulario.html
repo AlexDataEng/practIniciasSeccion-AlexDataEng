@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css-formulario.css">
+    <title>Emitir Informe</title>
+</head>
+<body>
+
+    <header class="encabezado">
+        <div class="menu">
+            
+            <div class="logo">
+                <img src="C:\Users\mirla\Desktop\curso_web\css\furmulario\youtube_profile_image.png" alt="">
+            </div>
+
+            <nav>
+                <ul>
+                    <li>
+                        <a href=".\incio.html" >Inicio</a>
+                    </li>
+                    <li>
+                        <a href=".\inicio-informe.html" class="active">Informes</a>
+                    </li>
+                    <li>
+                        <a href="">Usuarios</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    
+    <section class="container">
+        
+        <header>Datos Informes</header>
+
+        <form action="">
+            <div class="from first">
+
+                <div class="Datos Devolucion">
+                    <span class="title" ><strong> Detalles Devolución </strong> </span>
+
+                    <div class="fields">
+                        
+                        <div class="input-field">
+                            <label>Fecha Recepción</label>
+                            <input type="date" placeholder="Ingrese fecha">
+                            
+                        </div>
+
+                        <div class="input-field">
+                            <label for="tipoDevolucion">Tipo devolución</label>
+                            
+                            <select id="tipoDevolucion" name="tipoDevolucion">
+                                <option value="Seleccione">Seleccione</option>
+                                <option value="Dev_mercaderia_con_O-R">Dev. mercadería con O.R</option>
+                                <option value="Dev_mercaderia_sin_O-R">Dev. Mercadería sin O.R</option>
+                                <option value="No_cargado">No cargado</option>
+                                <option value="Factura_nula">Factura nula</option>
+                                <option value="Sin_stock">Sin stock</option>
+                                <option value="No_despachado">No despachado</option>
+                                <option value="Otro">Otro</option>
+                            </select>
+                        </div>
+
+
+                        <div class="input-field">
+                            <label for="listaAnulacion">Anulación Solicitada Por:</label>
+                            <select name="listaAnulacion" id="listaAnulacion">
+                                <option value="null">Anulada Por:</option>
+                                <option value="Patricia Peña">Patricia Peña</option>
+                                <option value="Andres Necochea">Andres Necochea</option>
+                                <option value="Francisco Laredo">Francisco Laredo</option>
+                            </select>
+                        </div>
+
+                        <div class="input-field">
+                            <label for="categoriaMotivo">Categoría De Motivo:</label>
+                            <select name="categoriaMotivo" id="categoriaMotivo">
+                                <option value="null">Seleccionar</option>
+                                <option value="SIN STOCK">SIN STOCK</option>
+                                <option value="VENCIMIENTO">VENCIMIENTO</option>
+                                <option value="VIDA UTIL">VIDA UTIL</option>
+                                <option value="CONTAMINADO">CONTAMINADO</option>
+                                <option value="MAL ESTADO">MAL ESTADO</option>
+                                <option value="ERROR ETIQUETA">ERROR ETIQUETA</option>
+                                <option value="DIFERENCIA DE PESO">DIFERENCIA DE PESO</option>
+                                <option value="ERROR DE VENTA">ERROR DE VENTA</option>
+                                <option value="ERROR DESPACHO">ERROR DESPACHO</option>
+                                <option value="ERROR ENTREGA">ERROR ENTREGA</option>
+                                <option value="NO ENCONTRADO">NO ENCONTRADO</option>
+                                <option value="CLIENTE INCONFORME">CLIENTE INCONFORME</option>
+                            </select>
+                        </div>
+
+
+                        <div class="input-field">
+                            <label>Motivo Devolución</label>
+                            <input type="text" placeholder="Ingrese motivo">
+                        </div>
+
+                        <div class="input-field">
+                            <label>Dev. Envase IC (Si/No/Otro)</label>
+                            <input type="text" placeholder="Comente">
+                        </div>
+
+                        <div class="input-field">
+                            <label>Recepción Cliente (Si/No) Motivo</label>
+                            <input type="text" placeholder="Cliente recibe">
+                        </div>
+                        
+                        <div class="input-field">
+                            <label>Nº Orden Retiro</label>
+                            <input type="text" placeholder="Nº Orden de retiro">
+                        </div>
+
+                        <div class="input-field">
+                            
+                            <label for="requiereNC">NC (Si/No)</label>
+                            <select name="requiereNC" id="requiereNC">
+                                <option value="null">null</option>
+                                <option value="si">Si</option>
+                                <option value="no">No</option>
+                            </select>
+
+                        </div>
+
+                        <div class="input-field">
+                            <label>Observación</label>
+                            <textarea name="inp-observacion"  cols="5" rows="4"></textarea>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="Datos Facturacion">
+                    <span class="title"> <strong> Datos Facturación </strong></span>
+
+                    <div class="fields">
+                        
+                        <!-- *************************** Input Clientes ******************************** -->
+
+                        <div class="input-field">
+                            <label>RUT Cliente *</label>
+                            <input type="text" id="rutInput" placeholder="RUT del cliente" required >
+                            <div id="sugerenciasRut"></div>
+                        </div>
+                        
+                        <div class="input-field">
+                            <label>Ciudad *</label>
+                            <input type="text" id="ciudadInput" placeholder="Ciudad del cliente" required> 
+                        </div>
+                        
+                        <div class="input-field">
+                            <label>Comuna *</label>
+                            <input type="text" id="comunaInput" placeholder="Comuna del cliente" required>
+                        </div>
+                        
+                        <script>
+                            // Objeto que contiene información asociada a los RUTs
+                            var datosClientes = {
+                                "27.132.764-7": { ciudad: "Santiago", comuna: "Providencia" },
+                                "25.591.463-1": { ciudad: "Valparaíso", comuna: "Viña del Mar" },
+                                // Agrega más datos según sea necesario
+                            };
+                        
+                            // Obtener los elementos del DOM
+                            var rutInput = document.getElementById("rutInput");
+                            var ciudadInput = document.getElementById("ciudadInput");
+                            var comunaInput = document.getElementById("comunaInput");
+                            var sugerenciasRutContainer = document.getElementById("sugerenciasRut");
+                        
+                            // Manejar el evento de entrada en el campo de RUT
+                            rutInput.addEventListener("input", function() {
+                                var rut = rutInput.value.trim();
+                                // Filtrar los RUTs que coinciden con el valor de entrada
+                                var sugerenciasRut = Object.keys(datosClientes).filter(function(clienteRut) {
+                                    return clienteRut.startsWith(rut);
+                                });
+                                // Mostrar las sugerencias
+                                mostrarSugerenciasRut(sugerenciasRut);
+                            });
+                        
+                            // Función para mostrar las sugerencias de RUT en el contenedor
+                            function mostrarSugerenciasRut(sugerenciasRut) {
+                                sugerenciasRutContainer.innerHTML = "";
+                                sugerenciasRut.forEach(function(sugerenciaRut) {
+                                    var sugerenciaRutElemento = document.createElement("div");
+                                    sugerenciaRutElemento.classList.add("sugerencia");
+                                    sugerenciaRutElemento.textContent = sugerenciaRut;
+                                    sugerenciaRutElemento.addEventListener("click", function() {
+                                        // Asignar la sugerencia seleccionada al campo de entrada
+                                        rutInput.value = sugerenciaRut;
+                                        // Obtener los datos asociados al RUT
+                                        var datosCliente = datosClientes[sugerenciaRut];
+                                        // Establecer los valores de Ciudad y Comuna
+                                        ciudadInput.value = datosCliente.ciudad;
+                                        comunaInput.value = datosCliente.comuna;
+                                        // Limpiar las sugerencias
+                                        sugerenciasRutContainer.innerHTML = "";
+                                    });
+                                    sugerenciasRutContainer.appendChild(sugerenciaRutElemento);
+                                });
+                            }
+                        
+                            // Manejar clic fuera del campo para limpiar las sugerencias
+                            document.addEventListener("click", function(event) {
+                                if (event.target !== rutInput && event.target !== sugerenciasRutContainer) {
+                                    sugerenciasRutContainer.innerHTML = "";
+                                }
+                            });
+                        </script>
+
+
+                        <!-- *************************** Fin Input Clientes ******************************** -->
+
+
+
+                        <!-- *************************** Input Transporte ******************************** -->
+
+
+                        <div class="input-field">
+                            <label for="nombreTransporte">Transporte</label>
+                            <input type="text" id="nombreTransporte" name="nombreTransporte" placeholder="Ingrese Transporte" autocomplete="off">
+                            <div id="sugerenciasTransporte"></div>
+                        </div>
+                        
+                        <script>
+                            // Lista de nombres de transporte (puedes cargarla desde una fuente externa si es necesario)
+                            var transportes = ["Barraza", "VanOnsterwyck", "Ecoex", "ByP", "Antillanca", "Max"];
+                        
+                            // Obtener el elemento de entrada y el contenedor de sugerencias
+                            var inputTransporte = document.getElementById("nombreTransporte");
+                            var sugerenciasTransporteContainer = document.getElementById("sugerenciasTransporte");
+                        
+                            // Número máximo de sugerencias visibles
+                            var maxSugerenciasVisibles = 3;
+                        
+                            // Manejar el evento de entrada en el campo de nombre de transporte
+                            inputTransporte.addEventListener("input", function() {
+                                var valorInput = inputTransporte.value.trim();
+                        
+                                // Filtrar los transportes que coinciden con el valor de entrada
+                                var sugerenciasTransporte = transportes.filter(function(transporte) {
+                                    return transporte.toLowerCase().startsWith(valorInput.toLowerCase());
+                                });
+                        
+                                // Mostrar un número limitado de sugerencias
+                                mostrarSugerenciasTransporte(sugerenciasTransporte.slice(0, maxSugerenciasVisibles));
+                            });
+                        
+                            // Función para mostrar las sugerencias de nombres de transporte en el contenedor
+                            function mostrarSugerenciasTransporte(sugerenciasTransporte) {
+                                sugerenciasTransporteContainer.innerHTML = "";
+                                sugerenciasTransporte.forEach(function(sugerenciaTransporte) {
+                                    var sugerenciaTransporteElemento = document.createElement("div");
+                                    sugerenciaTransporteElemento.classList.add("sugerencia");
+                                    sugerenciaTransporteElemento.textContent = sugerenciaTransporte;
+                                    sugerenciaTransporteElemento.addEventListener("click", function() {
+                                        // Asignar la sugerencia seleccionada al campo de entrada
+                                        inputTransporte.value = sugerenciaTransporte;
+                                        // Limpiar las sugerencias
+                                        sugerenciasTransporteContainer.innerHTML = "";
+                                    });
+                                    sugerenciasTransporteContainer.appendChild(sugerenciaTransporteElemento);
+                                });
+                            }
+                        
+                            // Manejar clic fuera del campo para limpiar las sugerencias
+                            document.addEventListener("click", function(event) {
+                                if (event.target !== inputTransporte) {
+                                    sugerenciasTransporteContainer.innerHTML = "";
+                                }
+                            });
+                        </script>
+                        
+
+
+
+
+                        <!-- ****************************** Fin Input Transporte  ***************************** -->
+
+
+
+                        <div class="input-field">
+                            <label>Nº Ruta</label>
+                            <input type="text" placeholder="Nº de ruta">
+                        </div>
+
+                        <div class="input-field">
+                            <label for="listaConductores">Conductor</label>
+                            <select name="listaConductores" id="listaConductores">
+                                <option value="null">Seleccione Conductor</option>
+                                <option value="Benito Cardenas">Benito Cardenas</option>
+                                <option value="Cristian Acuña">Cristian Acuña</option>
+                                <option value="Cristian Ahumada">Cristian Ahumada</option>
+                                <option value="Marco Cifuentes">Marco Cifuentes</option>
+                                <option value="Ernesto Tapia">Ernesto Tapia</option>
+                                <option value="Juan Carlos Contreras">Juan Carlos Contreras</option>
+                                <option value="Fernando Navarro">Fernando Navarro</option>
+                            </select>
+                        </div>
+
+
+                        <!-- ************************** Inicio Input Vendedor ************************** -->
+
+                        
+
+                        <div class="input-field">
+                            <label for="nombreVendedor">Vendedor</label>
+                            <input type="text" id="nombreVendedor" name="nombreVendedor" placeholder="Ingrese Vendedor" autocomplete="off">
+                            <div id="sugerenciasVendedor"></div>
+                        </div>
+                        
+                        <script>
+                            // Lista de nombres de vendedores
+                            var vendedores = ["Gregorio Fabres", "Julio Fabres",  "Castro Fabres", "Alex Kast"];
+                        
+                            // Obtener el elemento de entrada y el contenedor de sugerencias
+                            var inputVendedor = document.getElementById("nombreVendedor");
+                            var sugerenciasVendedorContainer = document.getElementById("sugerenciasVendedor");
+                        
+                            // Número máximo de sugerencias visibles
+                            var maxSugerenciasVisibles = 3;
+                        
+                            // Manejar el evento de entrada en el campo de nombre de vendedor
+                            inputVendedor.addEventListener("input", function() {
+                                var valorInput = inputVendedor.value.trim();
+                        
+                                // Filtrar los vendedores que coinciden con el valor de entrada
+                                var sugerenciasVendedor = vendedores.filter(function(vendedor) {
+                                    return vendedor.toLowerCase().startsWith(valorInput.toLowerCase());
+                                });
+                        
+                                // Mostrar un número limitado de sugerencias
+                                mostrarSugerenciasVendedor(sugerenciasVendedor.slice(0, maxSugerenciasVisibles));
+                            });
+                        
+                            // Función para mostrar las sugerencias de nombres de vendedor en el contenedor
+                            function mostrarSugerenciasVendedor(sugerenciasVendedor) {
+                                sugerenciasVendedorContainer.innerHTML = "";
+                                sugerenciasVendedor.forEach(function(sugerenciaVendedor) {
+                                    var sugerenciaVendedorElemento = document.createElement("div");
+                                    sugerenciaVendedorElemento.classList.add("sugerencia");
+                                    sugerenciaVendedorElemento.textContent = sugerenciaVendedor;
+                                    sugerenciaVendedorElemento.addEventListener("click", function() {
+                                        // Asignar la sugerencia seleccionada al campo de entrada
+                                        inputVendedor.value = sugerenciaVendedor;
+                                        // Limpiar las sugerencias
+                                        sugerenciasVendedorContainer.innerHTML = "";
+                                    });
+                                    sugerenciasVendedorContainer.appendChild(sugerenciaVendedorElemento);
+                                });
+                            }
+                        
+                            // Manejar clic fuera del campo para limpiar las sugerencias
+                            document.addEventListener("click", function(event) {
+                                if (event.target !== inputVendedor) {
+                                    sugerenciasVendedorContainer.innerHTML = "";
+                                }
+                            });
+                        </script>
+                        
+
+                        <!-- ************************** Fin Input Vendedor ************************** -->
+                        
+                        <div class="input-field">
+                            <label>Factura</label>
+                            <input type="number" placeholder="Nº de Factura">
+                        </div>
+                        <div class="input-field">
+                            <label>Fecha Emision Factura</label>
+                            <input type="date" placeholder="Fecha Factura">
+                        </div>
+
+                        
+
+                        <div class="input-field">
+                            <label>Fecha Emisión Informe *</label>
+                            <input type="date" id="fechaInforme" placeholder="Fecha de informe">
+                        </div>
+                        
+                        <!-- ************************** Inicio Input Fecha Informe ************************** -->
+
+                        <script>
+                            // Obtener el elemento del campo de fecha
+                            var fechaInformeInput = document.getElementById("fechaInforme");
+                        
+                            // Obtener la fecha actual en el formato "YYYY-MM-DD"
+                            var fechaActual = new Date().toISOString().split('T')[0];
+                        
+                            // Establecer la fecha actual en el campo de fecha
+                            fechaInformeInput.value = fechaActual;
+                        </script>
+
+                        
+
+                        <!-- ************************** Fin Input Fecha Informe ************************** -->
+
+
+
+                        <!-- ************************** Inicio Input N° Informe ************************** -->
+
+                        <div class="input-field">
+                            <label>Nº Informe *</label>
+                            <input type="number" id="numeroInforme" placeholder="Nº Informe" value="" readonly>
+                        </div>
+                        
+                        <script>
+                            // Lista de informes
+                            var informes = [100, 101, 102, 103, 104];  // Reemplazar lista de informes
+                        
+                            // Obtener el elemento del campo de número de informe
+                            var numeroInformeInput = document.getElementById("numeroInforme");
+                        
+                            // Calcular el próximo número de informe
+                            var proximoNumeroInforme = informes.length > 0 ? Math.max(...informes) + 1 : 1;
+                        
+                            // Establecer el próximo número de informe en el campo
+                            numeroInformeInput.value = proximoNumeroInforme;
+                        </script>
+                        
+                        <!-- ************************** Fin Input N° Informe ************************** -->
+
+
+
+                    </div>
+
+                    
+                    
+                    
+
+                </div>
+
+                <section class="tabular--wrapper">
+                    <h3 class="title"><strong> Ingrese productos </strong></h3>
+                
+                    <div class="table-container">
+                        <table id="productosTable">
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>código</th>
+                                    <th>Lote</th>
+                                    <th>Mercaderia/Formato</th>
+                                    <th>Total KG Fact.</th>
+                                    <th>Total KG Dev.</th>
+                                    <th>Bodega Destino</th>
+                                    <th>Estado Producto</th>
+                                    <th>Proceso</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td><input type="number" id="codigoProducto"></td>
+                                    <td><input type="text" id="loteInput"></td>
+                                    <td><input type="text" id="mercaderiaInput"></td>
+                                    <td><input type="number" id="totalFacturado"></td>
+                                    <td><input type="number" id="totalDevuelto"></td>
+                                    <td><input type="text" id="bodegaDestino"></td>
+                                    <td><input type="text" id="estadoProducto"></td>
+                                    <td><input type="text" id="estadoProceso"></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td><input type="number" id="codigoProducto"></td>
+                                    <td><input type="text" id="loteInput"></td>
+                                    <td><input type="text" id="mercaderiaInput"></td>
+                                    <td><input type="number" id="totalFacturado"></td>
+                                    <td><input type="number" id="totalDevuelto"></td>
+                                    <td><input type="text" id="bodegaDestino"></td>
+                                    <td><input type="text" id="estadoProducto"></td>
+                                    <td><input type="text" id="estadoProceso"></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td><input type="number" id="codigoProducto"></td>
+                                    <td><input type="text" id="loteInput"></td>
+                                    <td><input type="text" id="mercaderiaInput"></td>
+                                    <td><input type="number" id="totalFacturado"></td>
+                                    <td><input type="number" id="totalDevuelto"></td>
+                                    <td><input type="text" id="bodegaDestino"></td>
+                                    <td><input type="text" id="estadoProducto"></td>
+                                    <td><input type="text" id="estadoProceso"></td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td><input type="number" id="codigoProducto"></td>
+                                    <td><input type="text" id="loteInput"></td>
+                                    <td><input type="text" id="mercaderiaInput"></td>
+                                    <td><input type="number" id="totalFacturado"></td>
+                                    <td><input type="number" id="totalDevuelto"></td>
+                                    <td><input type="text" id="bodegaDestino"></td>
+                                    <td><input type="text" id="estadoProducto"></td>
+                                    <td><input type="text" id="estadoProceso"></td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td><input type="number" id="codigoProducto"></td>
+                                    <td><input type="text" id="loteInput"></td>
+                                    <td><input type="text" id="mercaderiaInput"></td>
+                                    <td><input type="number" id="totalFacturado"></td>
+                                    <td><input type="number" id="totalDevuelto"></td>
+                                    <td><input type="text" id="bodegaDestino"></td>
+                                    <td><input type="text" id="estadoProducto"></td>
+                                    <td><input type="text" id="estadoProceso"></td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td><input type="number" id="codigoProducto"></td>
+                                    <td><input type="text" id="loteInput"></td>
+                                    <td><input type="text" id="mercaderiaInput"></td>
+                                    <td><input type="number" id="totalFacturado"></td>
+                                    <td><input type="number" id="totalDevuelto"></td>
+                                    <td><input type="text" id="bodegaDestino"></td>
+                                    <td><input type="text" id="estadoProducto"></td>
+                                    <td><input type="text" id="estadoProceso"></td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td><input type="number" id="codigoProducto"></td>
+                                    <td><input type="text" id="loteInput"></td>
+                                    <td><input type="text" id="mercaderiaInput"></td>
+                                    <td><input type="number" id="totalFacturado"></td>
+                                    <td><input type="number" id="totalDevuelto"></td>
+                                    <td><input type="text" id="bodegaDestino"></td>
+                                    <td><input type="text" id="estadoProducto"></td>
+                                    <td><input type="text" id="estadoProceso"></td>
+                                </tr>
+                                <tr>
+                                    <td>8</td>
+                                    <td><input type="number" id="codigoProducto"></td>
+                                    <td><input type="text" id="loteInput"></td>
+                                    <td><input type="text" id="mercaderiaInput"></td>
+                                    <td><input type="number" id="totalFacturado"></td>
+                                    <td><input type="number" id="totalDevuelto"></td>
+                                    <td><input type="text" id="bodegaDestino"></td>
+                                    <td><input type="text" id="estadoProducto"></td>
+                                    <td><input type="text" id="estadoProceso"></td>
+                                </tr>
+                                <tr>
+                                    <td>9</td>
+                                    <td><input type="number" id="codigoProducto"></td>
+                                    <td><input type="text" id="loteInput"></td>
+                                    <td><input type="text" id="mercaderiaInput"></td>
+                                    <td><input type="number" id="totalFacturado"></td>
+                                    <td><input type="number" id="totalDevuelto"></td>
+                                    <td><input type="text" id="bodegaDestino"></td>
+                                    <td><input type="text" id="estadoProducto"></td>
+                                    <td><input type="text" id="estadoProceso"></td>
+                                </tr>
+                                <tr>
+                                    <td>10</td>
+                                    <td><input type="number" id="codigoProducto"></td>
+                                    <td><input type="text" id="loteInput"></td>
+                                    <td><input type="text" id="mercaderiaInput"></td>
+                                    <td><input type="number" id="totalFacturado"></td>
+                                    <td><input type="number" id="totalDevuelto"></td>
+                                    <td><input type="text" id="bodegaDestino"></td>
+                                    <td><input type="text" id="estadoProducto"></td>
+                                    <td><input type="text" id="estadoProceso"></td>
+                                </tr>
+                                <tr>
+                                    <td>11</td>
+                                    <td><input type="number" id="codigoProducto"></td>
+                                    <td><input type="text" id="loteInput"></td>
+                                    <td><input type="text" id="mercaderiaInput"></td>
+                                    <td><input type="number" id="totalFacturado"></td>
+                                    <td><input type="number" id="totalDevuelto"></td>
+                                    <td><input type="text" id="bodegaDestino"></td>
+                                    <td><input type="text" id="estadoProducto"></td>
+                                    <td><input type="text" id="estadoProceso"></td>
+                                </tr>
+                            
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+                
+                <script>
+                    // Obtener los elementos de entrada
+                    var codigoProductoInput = document.getElementById("codigoProducto");
+                    var loteInput = document.getElementById("loteInput");
+                    var mercaderiaInput = document.getElementById("mercaderiaInput");
+                    var totalFacturadoInput = document.getElementById("totalFacturado");
+                
+                    // Manejar el evento de entrada en el campo de código de producto
+                    codigoProductoInput.addEventListener("input", function () {
+                        // Obtener el valor del código de producto
+                        var codigoProducto = codigoProductoInput.value.trim();
+                
+                        // Simular datos de productos basados en el código (puedes cargar datos desde una fuente externa)
+                        var datosProductos = {
+                            "0045037": { lote: "8724", mercaderia: "Nombre Producto" },
+                            "0045038": { lote: "8724", mercaderia: "Nombre Producto" }
+                            // Agrega más datos según sea necesario
+                        };
+                
+                        // Verificar si hay datos asociados al código de producto
+                        if (datosProductos[codigoProducto]) {
+                            // Actualizar los campos de Lote y Mercadería/Formato con los datos asociados
+                            loteInput.value = datosProductos[codigoProducto].lote;
+                            mercaderiaInput.value = datosProductos[codigoProducto].mercaderia;
+                
+                            // Enfocar automáticamente el siguiente campo (Total KG Fact.)
+                            totalFacturadoInput.focus();
+                        } else {
+                            // Limpiar los campos si no hay datos asociados
+                            loteInput.value = "";
+                            mercaderiaInput.value = "";
+                        }
+                    });
+                </script>
+                
+                
+                
+                
+                <div class="botones">
+
+                    <div class="box-link box-link-green">
+                        <a href="#">Emitir</a>
+                    </div>
+                    <div class="box-link box-link-red">
+                        <a href=".\inicio-informe.html">Regresar</a>
+                    </div>
+
+                    
+                </div>
+            </div>
+        </form>
+    </section>
+
+    
+    
+
+</body>
+</html>

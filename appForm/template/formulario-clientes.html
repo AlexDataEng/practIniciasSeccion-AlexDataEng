@@ -1,0 +1,137 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/css-formulario-clientes.css' %} ">
+    <title>Formulario Cliente</title>
+</head>
+<body>
+
+    <header class="encabezado">
+        <div class="menu">
+            
+            <div class="logo">
+                <img src="#" alt="">
+            </div>
+
+            <nav>
+                <ul>
+                    <li>
+                        <a href=".\incio.html" >Inicio</a>
+                    </li>
+                    <li>
+                        <a href=".\inicio-informe.html" class="active">Informes</a>
+                    </li>
+                    <li>
+                        <a href="">Usuarios</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    
+    <section class="container">
+        
+        <header>Datos Clientes</header>
+
+        <form action="{% url 'formulario_cliente' %}" method="post">{% csrf_token %}
+            <div class="from first">
+
+                <div class="Datos Devolucion">
+                    <span class="title" ><strong> Detalles Clientes </strong> </span>
+
+                    <div class="fields">
+                        
+                        <div class="input-field">
+                            <label>Rut</label>
+                            <input name="rut" type="text" placeholder="Ingrese su rut">
+                        </div>
+                    
+                        <div class="input-field">
+                            <label>Nombres</label>
+                            <input name="nombres" type="text" placeholder="Ingrese el nombre completo">
+                        </div>
+
+
+                        <div class="input-field">
+                            <label for="tipoUsuario">Tipo usuario</label>
+                            
+                            <select id="tipoUsuario" name="tipoUsuario">
+                                <option value="Seleccione">Seleccione</option>
+                                <option value="master">Master</option>
+                                <option value="escritor">escritor</option>
+                               
+                            </select>
+                        </div>
+
+                        <div class="input-field">
+                            <label>Contraseña</label>
+                            <input name="contrasena" type="password" placeholder="Ingrese contraseña">
+                        </div>
+                </div>
+
+                <section class="tabular--wrapper">
+                    <h3 class="title"><strong> Ingrese productos </strong></h3>
+                
+                    <div class="table-container">
+                        <table id="productosTable">
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>código</th>
+                                    <th>Lote</th>
+                                    <th>Producto</th>
+                                    <th>Total KG Fact.</th>
+                                    <th>Total KG Dev.</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td><input name="codigo" type="number" id="codigo"></td>
+                                    <td><input name="lote" type="text" id="lote"></td>
+                                    <td><input name="producto" type="text" id="producto"></td>
+                                    <td><input name="totalFacturado" type="number" id="totalFacturado"></td>
+                                    <td><input name="totalDevuelto" type="text" id="totalDevuelto"></td>
+                                    
+                                </tr>
+                                
+                            
+                            </tbody>
+                        </table>
+                    </div>
+                </section>               
+                
+                <div class="botones">
+                    <input type="submit" value="Emitir">
+                    <div class="box-link box-link-green">
+                        <a href="#">Regresar</a>
+                    </div>
+                </div>
+            </div>
+                
+            
+        </form>
+    </section>
+
+    
+    
+
+</body>
+</html>
+
+<!--
+
+                <div class="botones">
+                    <div class="box-link box-link-green">
+                        <a href="#">Emitir</a>
+                    </div>
+                    <div class="box-link box-link-red">
+                        <a href="#">Regresar</a>
+                    </div>
+                </div>
+-->
