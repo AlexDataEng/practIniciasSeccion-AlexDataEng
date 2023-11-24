@@ -1,14 +1,48 @@
 from django.shortcuts import render, redirect
 from .models import Sesion
+from django.contrib.auth import authenticate, login
+from django.contrib.auth import logout
+
+# Decorador para autentificacion
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
-def login(requests):
-    return render(requests, "login.html")
+def login(request):
+
+    """ if request.method == 'POST':
+        # Lógica de autenticación aquí
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            # Después de autenticar al usuario, redirige a la URL original o a una predeterminada.
+            next_url = request.GET.get('next', '/sesion/inicio-informe/')
+            return redirect(next_url)"""
+
+    return render(request, './registration/login.html')
+
+
+
+
+def logout_view(request):
+    logout(request)
+    # Redirige a la URL configurada en LOGOUT_URL o a la que desees.
+    return redirect('./registration/cerrar_sesion.html')
+
+
+
+
 
 
 # Landing Page
 def homeInforme(request):
     return render(request, "inicio-informe.html")
+
+# Pagina Incio
+def home(request):
+    return render(request, "inicio.html")
 
 
 

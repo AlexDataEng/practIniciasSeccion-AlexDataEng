@@ -1,11 +1,13 @@
 {% load static %}
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio Informe</title>
-    <link rel="stylesheet" href="{% static 'css/css-inicio-informe.css' %}">
+    <title>Inicio</title>
+    <link rel="stylesheet" href="{% static 'css/css-inicio.css' %}">
 </head>
 <body>
     
@@ -19,15 +21,15 @@
             <nav>
                 <ul>
                     <li>
-                        <a href={% url 'inicio' %} >Inicio</a>
+                        <a href="" class="active">Inicio</a>
                     </li>
                     <li>
-                        <a href={% url 'inicio-informe' %} class="active">Informes</a>
+                        <a href={% url 'inicio-informe' %}>Informes</a>
                     </li>
                     <li>
-                        <a href=".\inicio-usuario.html">Usuarios</a>
+                        <a href="">Usuarios</a>
                     </li>
-                    {% if request.user.is_authenticated %}
+                   {% if request.user.is_authenticated %}
                         <li>
                             <a href={% url 'iniciarSesion' %}>Cerrar sesion</a> 
                         </li>
@@ -43,10 +45,7 @@
     
     <section class="container-sect">
         
-        <header>
-            <h1>Bienvenido al módulo Informe</h1>
-            <p>Esto prodrás hacer en este modulo:</p>
-         </header>
+        <header>Esto podrás realizar en cada módulo:</header>
 
         <div class="container">
         
@@ -56,68 +55,38 @@
                     <div class="box-left"></div>
                     <div class="box-right">
                         <h2>Emitir Informes</h2>
-                        
-                    
+                        <p>Podrás emitir, buscar, firmar y anular informes</p>
+                        <a href="./registrar.html">Ir</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+
+                <div class="box-card">
+                    <div class="box-left"></div>
+                    <div class="box-right">
+                        <h2>Administacion</h2>
+                        <p>Podrás administrar las bases de datos.</p>
                         <a href="./registrar.html">Ir</a>
                     </div>
                 </div>
             </div>
 
 
-
-
-
             <div class="card">
 
                 <div class="box-card">
                     <div class="box-left"></div>
                     <div class="box-right">
-                        <h2>Actualizar Informe</h2>
-                    
-                        <a href=".\actualizar-informe.html">Ir</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-
-                <div class="box-card">
-                    <div class="box-left"></div>
-                    <div class="box-right">
-                        <h2>Firmar Informe</h2>
-                    
-                        <a href=".\firmar-informe.html">Ir</a>
+                        <h2>Usuarios</h2>
+                        <p>Podrás crear, actualizar y eliminar usuarios.</p>
+                        <a href="./registrar.html">Ir</a>
                     </div>
                 </div>
             </div>
 
 
-            <div class="card">
-
-                <div class="box-card">
-                    <div class="box-left"></div>
-                    <div class="box-right">
-                        <h2>Anular Informe</h2>
-                    
-                        <a href=".\anular-informe.html">Ir</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-
-                <div class="box-card">
-                    <div class="box-left"></div>
-                    <div class="box-right">
-                        <h2>Buscar informes</h2>
-                    
-                        <a href=".\busca-informe.html">Ir</a>
-                    </div>
-                </div>
-            </div>
-            
-
-        </div>
 
         
         
@@ -129,9 +98,9 @@
             <nav class="nav-right">
                 <ul class="ul-pie">
                     <li>
-                        <a href="">©Copyright SignAppFast
-                        </a>
-                        <span>|</span>
+                        <span>©Copyright SignAppFast </span>
+                      
+                        <span> |</span>
                         <a href="">Documentación SignAppFast
                         </a>
                     </li>

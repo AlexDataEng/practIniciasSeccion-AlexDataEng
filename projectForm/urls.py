@@ -20,6 +20,7 @@ from django.urls import path, include
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("form/", include("appForm.urls")),
-    path("sesion/", include("appSesion.urls"))
+    path("sesion/", include("appSesion.urls")),
+    path('accounts/', include('django.contrib.auth.urls')),  #Autentificador
 
 ]
